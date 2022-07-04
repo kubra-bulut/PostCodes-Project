@@ -1,0 +1,2 @@
+# gorm
+gorm çalışması
