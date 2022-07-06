@@ -10,7 +10,10 @@ The file will contain the project’s name and other module dependencies.
 `go get gorm.io/driver/postgres`:Run this code to get postgresql
 
 
-`go mod tidy`:This command will basically match the go.mod file with the dependencies required in the source files.
+`go mod tidy`:This command will basically match the _go.mod_ file with the dependencies required in the source files.
 
 * Download all the dependencies that are required in your source files and update go.mod file with that dependency.
-* Remove all dependencies from the go.mod file which are not required in the source files.
+* Remove all dependencies from the _go.mod_ file which are not required in the source files.
+
+
+`go mod vendor`: The go mod vendor command constructs a directory named vendor in the main module’s root directory that contains copies of all packages needed to support builds and tests of packages in the main module.
