@@ -1,2 +1,4 @@
-# gorm
-gorm çalışması
+# GORM
+Getting Started with Project from Scratch
+
+
