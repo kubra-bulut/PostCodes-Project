@@ -1,10 +1,11 @@
-package Config
+package config
 
 import (
+	"RecapGorm/models"
 	"fmt"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
-
+	"log"
 	"os"
 )
 
@@ -17,11 +18,19 @@ var (
 )
 
 func InitDB() {
-	cnnString := fmt.Sprintf("host=%s user=%s password='%s' dbname=%s sslmode=disable",
+	cnnString := fmt.Sprintf("host=%s user=%s password='%s' dbname=%s",
 		appDBHost,
 		appDBUserName,
 		appDBPassword,
 		appDBName)
 	var err error
-	DB, err = gorm.Open(postgres.open)
+	DB, err = gorm.Open(postgres.Open(cnnString), &gorm.Config{})
+	if err != nil {
+		log.Println("DB Error", err)
+	}
+	fmt.Println("DB Connected")
+}
+
+func MigrateTables() {
+	_ = DB.AutoMigrate(&models.PostCode{})
 }
