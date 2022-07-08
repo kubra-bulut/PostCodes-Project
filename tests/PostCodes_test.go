@@ -147,3 +147,9 @@ func TestPostCodesDeleteRecordWithIDs(t *testing.T) {
 	var postCodes models.PostCode
 	config.DB.Delete(&postCodes, []int{1, 2, 3, 4, 5, 6})
 }
+
+func TestPostCodesDeleteRecord(t *testing.T) {
+	config.InitDB()
+	var postCodes []models.PostCode
+	config.DB.Delete(&postCodes)
+}
