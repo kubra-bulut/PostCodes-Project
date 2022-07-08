@@ -1,6 +1,7 @@
 package models
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/lib/pq"
 	"gorm.io/datatypes"
@@ -26,6 +27,11 @@ type PostCode struct {
 
 type Location struct {
 	X, Y float64
+}
+
+func (l Location) ToByteArray() []byte {
+	location_, _ := json.Marshal(l)
+	return location_
 }
 
 func (p PostCode) TableName() string {

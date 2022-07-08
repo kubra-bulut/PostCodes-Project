@@ -40,7 +40,7 @@ github.com/jinzhu/now
 github.com/lib/pq
 github.com/lib/pq/oid
 github.com/lib/pq/scram
-# golang.org/x/crypto v0.0.0-20220214200702-86341886e292
+# golang.org/x/crypto v0.0.0-20220408190544-5352b0902921
 ## explicit; go 1.17
 golang.org/x/crypto/pbkdf2
 # golang.org/x/text v0.3.7

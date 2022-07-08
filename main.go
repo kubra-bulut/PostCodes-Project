@@ -6,4 +6,5 @@ import (
 
 func main() {
 	config.InitDB()
+	config.MigrateTables()
 }

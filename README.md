@@ -17,3 +17,12 @@ The file will contain the project’s name and other module dependencies.
 
 
 `go mod vendor`: The go mod vendor command constructs a directory named vendor in the main module’s root directory that contains copies of all packages needed to support builds and tests of packages in the main module.
+
+[https://gorm.io/docs/index.html](https://gorm.io/docs/index.html): Document for the PostCodes_test.go
+
+**Excelize**: The goal of Excelize is to create and maintain a Go language version of the Excel Document API to handle xlsx files that conform to the Office Open XML (OOXML) standard. 
+With Excelize you can use Go to read and write MS Excel files.
+[Link for a detailed information](https://xuri.me/excelize/en/)
+
+`go get github.com/xuri/excelize/v2`: Command for installing excelize package
+
