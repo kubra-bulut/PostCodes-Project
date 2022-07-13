@@ -46,3 +46,18 @@ func (p *PostCode) AfterFind(tx *gorm.DB) (err error) {
 	p.HiFromHook = fmt.Sprintf("Hi from hook %s", p.Code)
 	return
 }
+
+func (p PostCode) Download() {
+	// TODO: https://postakodu.ptt.gov.tr/Dosyalar/pk_list.zip adresinden dosyayı indir.
+
+	// TODO: https://github.com/go-resty/resty paketini kullanmalısın.
+
+	// TODO: https://gosamples.dev/unzip-file/ örneğini kullanarak zip dosyasının içeriğini aç.
+
+	// TODO: postcodes.xlsx dosyasının ismi ile klasöre kaydet.
+
+}
+
+func (p PostCode) ImportFromExcelFile(fileName string) {
+	// TODO: dosyayı postcodes tablosuna yaz.
+}
