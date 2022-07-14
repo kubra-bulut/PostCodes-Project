@@ -3,6 +3,7 @@ module RecapGorm
 go 1.18
 
 require (
+	github.com/go-resty/resty/v2 v2.7.0
 	github.com/lib/pq v1.10.2
 	github.com/xuri/excelize/v2 v2.6.0
 	gorm.io/datatypes v1.0.7

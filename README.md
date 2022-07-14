@@ -26,3 +26,7 @@ With Excelize you can use Go to read and write MS Excel files.
 
 `go get github.com/xuri/excelize/v2`: Command for installing excelize package
 
+**Resty**: Simple HTTP and REST client library for Go (inspired by Ruby rest-client)
+
+`go get github.com/go-resty/resty/v2`: Run this command to install resty package
+

@@ -1,8 +1,6 @@
 package main
 
-import (
-	"RecapGorm/config"
-)
+import "RecapGorm/config"
 
 func main() {
 	config.InitDB()

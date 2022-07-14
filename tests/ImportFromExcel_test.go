@@ -11,7 +11,7 @@ import (
 
 func TestImportFromExcel(t *testing.T) {
 	config.InitDB()
-	f, err := excelize.OpenFile("C:\\Users\\K\\GolandProjects\\RecapGorm\\pk_20220413.xlsx")
+	f, err := excelize.OpenFile("C:\\Users\\K\\GolandProjects\\RecapGorm\\tests\\postcodes\\postcodes.xlsx")
 	if err != nil {
 		fmt.Println(err)
 		return
