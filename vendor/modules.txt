@@ -52,6 +52,8 @@ github.com/richardlehane/mscfb
 # github.com/richardlehane/msoleps v1.0.1
 ## explicit
 github.com/richardlehane/msoleps/types
+# github.com/udhos/equalfile v0.3.0
+## explicit
 # github.com/xuri/efp v0.0.0-20220407160117-ad0f7a785be8
 ## explicit; go 1.11
 github.com/xuri/efp

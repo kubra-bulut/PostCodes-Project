@@ -1,7 +1,6 @@
 package tests
 
 import (
-	"RecapGorm/models"
 	"fmt"
 	"github.com/go-resty/resty/v2"
 	"log"
@@ -20,11 +19,6 @@ func TestDownload(t *testing.T) {
 	// Create a Resty Client
 	client := resty.New()
 
-	// Setting output directory path, If directory not exists then resty creates one!
-	// This is optional one, if you're planning using absolute path in
-	// `Request.SetOutput` and can used together.
-	// client.SetOutputDirectory("/Users/jeeva/Downloads")
-
 	// HTTP response gets saved into file, similar to curl -o flag
 	if _, err := client.R().
 		SetOutput("pk_list.zip").
@@ -32,13 +26,6 @@ func TestDownload(t *testing.T) {
 		fmt.Println(err.Error())
 	}
 
-}
-
-func TestUnzipExcel(t *testing.T) {
-	err := models.UnzipSource("pk_list.zip", "C:\\Users\\K\\GolandProjects\\RecapGorm\\tests\\postcodes")
-	if err != nil {
-		log.Fatal(err)
-	}
 }
 
 func TestRenameFile(t *testing.T) {
