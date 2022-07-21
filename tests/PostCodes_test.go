@@ -7,6 +7,8 @@ import (
 	"errors"
 	"fmt"
 	"gorm.io/gorm"
+	"log"
+	"os"
 	"testing"
 	"time"
 )
@@ -152,4 +154,24 @@ func TestPostCodesDeleteRecord(t *testing.T) {
 	config.InitDB()
 	var postCodes []models.PostCode
 	config.DB.Delete(&postCodes)
+}
+
+func TestRangeFiles(t *testing.T) {
+	files, err := os.ReadDir("C:\\Users\\K\\GolandProjects\\RecapGorm\\download")
+	if err != nil {
+		log.Fatal(err)
+	}
+	firstFile := files[0].Name()
+	secondFile := files[1].Name()
+	if firstFile < secondFile {
+		fmt.Println("This is the updated file:", secondFile)
+		e := os.Remove(firstFile)
+		if e != nil {
+			fmt.Println(e)
+			return
+		}
+		fmt.Println("File removed")
+	} else {
+		fmt.Println("this is the updated file:", firstFile)
+	}
 }

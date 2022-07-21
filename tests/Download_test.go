@@ -29,7 +29,7 @@ func TestDownload(t *testing.T) {
 }
 
 func TestRenameFile(t *testing.T) {
-	originalPath := "C:\\Users\\K\\GolandProjects\\RecapGorm\\tests\\postcodes\\pk_20220413.xlsx"
+	originalPath := "C:\\Users\\K\\GolandProjects\\RecapGorm\\tests\\postcodes\\pk_20220313.xlsx"
 	newPath := "C:\\Users\\K\\GolandProjects\\RecapGorm\\tests\\postcodes\\postcodes.xlsx"
 	e := os.Rename(originalPath, newPath)
 	if e != nil {

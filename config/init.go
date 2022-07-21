@@ -34,3 +34,7 @@ func InitDB() {
 func MigrateTables() {
 	_ = DB.AutoMigrate(&models.PostCode{})
 }
+
+func DeleteTable() {
+	DB.Migrator().DropTable(&models.PostCode{})
+}

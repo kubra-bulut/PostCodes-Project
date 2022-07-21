@@ -12,8 +12,7 @@ import (
 	"strings"
 )
 
-//Downloads the file from the given url
-
+//DownloadFile Downloads the file from the given url
 func DownloadFile(filePath, url string) error {
 	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
 	if err != nil {
@@ -34,8 +33,7 @@ func DownloadFile(filePath, url string) error {
 	return nil //check this line later
 }
 
-//Gets source and use the UnzipFile func to unzip
-
+// GetSourceToUnzip Gets source and use the UnzipFile func to unzip
 func GetSourceToUnzip(source, destination string) error {
 
 	// 1. Open the zip file
@@ -65,8 +63,7 @@ func GetSourceToUnzip(source, destination string) error {
 
 }
 
-//Unzip the given zip file
-
+// UnzipFile unzip the given zip file
 func UnzipFile(f *zip.File, destination string) error {
 	// 4. Check if file paths are not vulnerable to Zip Slip
 	filePath := filepath.Join(destination, f.Name)
@@ -107,47 +104,27 @@ func UnzipFile(f *zip.File, destination string) error {
 	return nil
 }
 
-//Checks the given files last modification time
+var firstFile, secondFile string
 
-func CheckFileModificationTime(fileName string) {
-	fileToCheck, err := os.Stat(fileName)
+// FindUpdatedFile Checks if the two file is equal and finds updated file
+//Deletes the old file
+func FindUpdatedFile() {
+	files, err := os.ReadDir("C:\\Users\\K\\GolandProjects\\RecapGorm\\download")
 	if err != nil {
 		log.Fatal(err)
 	}
-	//Checking the modified time of the current file
-	fmt.Println("File Name:", fileToCheck.Name())             // Base name of the file
-	fmt.Println("Last Modified Time:", fileToCheck.ModTime()) // Last modification time
-
-}
-
-//Changes the given files name
-
-func ChangeFileName(originalName, newName string) {
-	e := os.Rename(originalName, newName)
-	if e != nil {
-		log.Fatal(e)
-	}
-}
-
-//Compares two file and check if the two file is equal
-
-func IsFileEqual(oldFile, newFile string) {
-	if strings.Contains(oldFile, newFile) == true {
-		fmt.Println("files are equal")
-		RemoveFile(newFile)
-		fmt.Println("New file has been removed")
+	firstFile = files[0].Name()
+	secondFile = files[1].Name()
+	if firstFile < secondFile {
+		fmt.Println("This is the updated file:", secondFile)
+		e := os.Remove(firstFile)
+		if e != nil {
+			fmt.Println(e)
+			return
+		}
+		fmt.Println("File removed")
 	} else {
-		fmt.Println("files are not equal")
-		RemoveFile(oldFile)
-		fmt.Println("Old file has been removed")
+		fmt.Println("This is the updated file:", firstFile)
 	}
-}
 
-//Removes the given file
-
-func RemoveFile(fileName string) {
-	e := os.Remove(fileName)
-	if e != nil {
-		log.Fatal(e)
-	}
 }
