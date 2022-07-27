@@ -10,7 +10,7 @@ func DoTheOperations() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	err = GetSourceToUnzip("pk_list.zip", "download")
+	err = GetSourceToUnzip("pk_list.zip", "downloads")
 	if err != nil {
 		fmt.Println(err)
 	}

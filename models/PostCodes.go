@@ -10,7 +10,7 @@ import (
 )
 
 type PostCode struct {
-	ID          uint           `json:"id" gorm:"primaryKey;comment:ID"`
+	ID          uint64         `json:"id" gorm:"primaryKey;comment:ID"`
 	Code        string         `json:"code" gorm:"index:post_code_idx,sort:desc;comment:Posta Kodu"`
 	City        string         `json:"city" gorm:"index:city_country_town_idx,sort:desc;comment:Şehir"`
 	County      string         `json:"county" gorm:"index:city_county_town_idx,sort:desc;comment:İlçe"`

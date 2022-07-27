@@ -16,6 +16,7 @@ var (
 	appDBUserName = os.Getenv("gormDBUserName")
 	appDBPassword = os.Getenv("gormDBPassword")
 )
+var PostCodes []models.PostCode
 
 func InitDB() {
 	cnnString := fmt.Sprintf("host=%s user=%s password='%s' dbname=%s",

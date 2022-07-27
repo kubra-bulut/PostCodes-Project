@@ -109,7 +109,7 @@ var firstFile, secondFile string
 // FindUpdatedFile Checks if the two file is equal and finds updated file
 //Deletes the old file
 func FindUpdatedFile() {
-	files, err := os.ReadDir("C:\\Users\\K\\GolandProjects\\RecapGorm\\download")
+	files, err := os.ReadDir("C:\\Users\\K\\GolandProjects\\RecapGorm\\downloads")
 	if err != nil {
 		log.Fatal(err)
 	}

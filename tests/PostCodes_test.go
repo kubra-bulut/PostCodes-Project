@@ -157,7 +157,7 @@ func TestPostCodesDeleteRecord(t *testing.T) {
 }
 
 func TestRangeFiles(t *testing.T) {
-	files, err := os.ReadDir("C:\\Users\\K\\GolandProjects\\RecapGorm\\download")
+	files, err := os.ReadDir("C:\\Users\\K\\GolandProjects\\RecapGorm\\downloads")
 	if err != nil {
 		log.Fatal(err)
 	}
