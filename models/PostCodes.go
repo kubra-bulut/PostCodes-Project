@@ -24,7 +24,23 @@ type PostCode struct {
 	CreatedAt   time.Time      `json:"created_at" gorm:"comment:Oluşturulma Tarihi"`
 	UpdatedAt   time.Time      `json:"updated_at" gorm:"comment:Güncellenme Tarihi"`
 }
+type Cities struct {
+	City string `json:"city"`
+}
+type Counties struct {
+	County string `json:"county"`
+}
+type Towns struct {
+	Town string `json:"town"`
+}
 
+type Districts struct {
+	District string `json:"district"`
+}
+
+type Codes struct {
+	Code string `json:"code"`
+}
 type Location struct {
 	X, Y float64
 }

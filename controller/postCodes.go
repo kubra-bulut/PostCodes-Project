@@ -9,11 +9,6 @@ import (
 	"strconv"
 )
 
-//GETPostCodes gets all data from database
-func GETPostCodes(c *gin.Context) {
-	c.JSON(http.StatusOK, config.PostCodes)
-}
-
 // GETPostCodesWithID gets data by given id
 func GETPostCodesWithID(c *gin.Context) {
 	var returnValue models.PostCode
@@ -35,64 +30,70 @@ func GETPostCodesWithID(c *gin.Context) {
 	c.JSON(http.StatusOK, returnValue)
 }
 
-func GETPostCodesWithCity(c *gin.Context) {
-	var returnValue models.PostCode
+// GETPostCodesCity gives all cities
+func GETPostCodesCity(c *gin.Context) {
+	config.InitDB()
+	var cities []models.Cities
+	config.DB.Table("post_codes").Debug().Distinct("city").Find(&cities)
 
-	for _, postCode := range config.PostCodes {
-		city := c.Param("city")
-		if postCode.City == city {
-			returnValue = postCode
-			c.JSON(http.StatusOK, returnValue)
-		}
-
-	}
-	if returnValue.ID == 0 {
+	if cities == nil {
 		c.JSON(http.StatusNotFound, "Kayıt bulunamadı.")
 	}
+	c.JSON(http.StatusOK, cities)
 }
 
-func GETPostCodesWithCounty(c *gin.Context) {
-	var returnValue models.PostCode
-
-	for _, postCode := range config.PostCodes {
-		county := c.Param("county")
-		if postCode.County == county {
-			returnValue = postCode
-			c.JSON(http.StatusOK, returnValue)
-		}
-
-	}
-	if returnValue.ID == 0 {
+// GETPostCodesCitiesCounty gives you the county list of the given city
+func GETPostCodesCitiesCounty(c *gin.Context) {
+	config.InitDB()
+	var counties []models.Counties
+	city := c.Param("city")
+	config.DB.Table("post_codes").Debug().Where("city = ?", city).Distinct("county").Find(&counties)
+	if counties == nil {
 		c.JSON(http.StatusNotFound, "Kayıt bulunamadı.")
 	}
+	c.JSON(http.StatusOK, gin.H{"city": city})
+	c.JSON(http.StatusOK, counties)
 }
-func GETPostCodesWithTown(c *gin.Context) {
-	var returnValue models.PostCode
 
-	for _, postCode := range config.PostCodes {
-		town := c.Param("town")
-		if postCode.Town == town {
-			returnValue = postCode
-			c.JSON(http.StatusOK, returnValue)
-		}
+// GETPostCodesCountiesTown gives you the town list of the given city and county
+func GETPostCodesCountiesTown(c *gin.Context) {
+	config.InitDB()
+	var towns []models.Towns
 
-	}
-	if returnValue.ID == 0 {
-		c.JSON(http.StatusNotFound, "Kayıt bulunamadı.")
-	}
+	city := c.Param("city")
+	county := c.Param("county")
+
+	config.DB.Table("post_codes").Debug().Where("city = ? AND county = ?", city, county).Distinct("town").Find(&towns)
+
+	c.JSON(http.StatusOK, gin.H{"city": city})
+	c.JSON(http.StatusOK, gin.H{"county": county})
+	c.JSON(http.StatusOK, towns)
+
 }
+
+// GETPostCodesTownsDistrict gives you the district list of the given city, county and town
+func GETPostCodesTownsDistrict(c *gin.Context) {
+	config.InitDB()
+	var districts []models.Districts
+
+	county := c.Param("county")
+	town := c.Param("town")
+
+	config.DB.Table("post_codes").Debug().Where("county=? AND town = ?", county, town).Distinct("district").Find(&districts)
+
+	//c.JSON(http.StatusOK, gin.H{"city": city})
+	//c.JSON(http.StatusOK, gin.H{"county": county})
+	c.JSON(http.StatusOK, gin.H{"town": town})
+	c.JSON(http.StatusOK, districts)
+
+}
+
 func GETPostCodesWithDistrict(c *gin.Context) {
-	var returnValue models.PostCode
-
-	for _, postCode := range config.PostCodes {
-		district := c.Param("district")
-		if postCode.District == district {
-			returnValue = postCode
-			c.JSON(http.StatusOK, returnValue)
-		}
-
-	}
-	if returnValue.ID == 0 {
-		c.JSON(http.StatusNotFound, "Kayıt bulunamadı.")
-	}
+	config.InitDB()
+	var postCode models.Codes
+	town := c.Param("town")
+	district := c.Param("district")
+	config.DB.Table("post_codes").Debug().Where("town=? AND district = ?", town, district).Distinct("code").Find(&postCode)
+	c.JSON(http.StatusOK, gin.H{"district": district})
+	c.JSON(http.StatusOK, postCode)
 }

@@ -6,10 +6,9 @@ import (
 )
 
 func PostCodesRoot(api *gin.RouterGroup) {
-	api.GET("/postCodes", controller.GETPostCodes)
-	api.GET("/postCodes/:id", controller.GETPostCodesWithID)
-	//api.GET("/postCodes/:city", controller.GETPostCodesWithCity)
-	//api.GET("/postCodes/:county", controller.GETPostCodesWithCounty)
-	//api.GET("/postCodes/:town", controller.GETPostCodesWithTown)
-	api.GET("/district/:district", controller.GETPostCodesWithDistrict)
+	api.GET("/postCodes/cities", controller.GETPostCodesCity)
+	api.GET("/city/:city", controller.GETPostCodesCitiesCounty)
+	api.GET("/city/:city/county/:county", controller.GETPostCodesCountiesTown)
+	api.GET("/county/:county/town/:town", controller.GETPostCodesTownsDistrict)
+	api.GET("/town/:town/district/:district", controller.GETPostCodesWithDistrict)
 }

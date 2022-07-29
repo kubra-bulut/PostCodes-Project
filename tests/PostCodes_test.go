@@ -112,9 +112,18 @@ func TestPostCodesFindWhere(t *testing.T) {
 //Otherwise, GORM will select all fields by default.
 func TestPostCodesFindWithSelectedField(t *testing.T) {
 	config.InitDB()
-	var postCodes models.PostCode
-	config.DB.Debug().Select("code").Find(&postCodes)
-	libs.PrintPrettyStruct(postCodes)
+	type Cities struct {
+		City   string `json:"city"`
+		County string `json:"county"`
+	}
+	var codes []Cities
+	config.DB.Table("post_codes").Debug().Distinct("city", "county").Find(&codes)
+	libs.PrintPrettyStruct(codes)
+	//for _, postCodes = range config.Cities {
+	//
+	//
+	//}
+
 }
 
 //Select specific field with a new struct
